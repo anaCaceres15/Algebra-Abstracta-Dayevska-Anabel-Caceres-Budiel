@@ -1,0 +1,57 @@
+#include<iostream>
+#include <string>
+#include <iomanip>
+using std::setw;
+using namespace std;
+/*18.27 Escriba una versi�n de la rutina de ordenamiento por selecci�n (fi gura 8.28) que ordene objetos string. Use la funci�n
+swap en su soluci�n. */
+
+ string ordenamientoSeleccion( string, const int, bool (*)( char, char ) );
+ void SWAP( char * const, char * const );
+ bool ascendente( char, char ); 
+ bool descendente( char, char ); 
+ 
+ int main(){
+    int decide; // 1 = ascendente, 2 = descendente
+    string str,str2;
+    
+    cout <<"Ingrese letras que quiera ordenar: ";getline(cin,str);
+    cout << "Escriba 1 para orden ascendente,o escriba 2 para orden descendente: "; cin >> decide;
+    const int tam= str.size();
+    
+    if ( decide == 1 )  str2= ordenamientoSeleccion( str, tam, ascendente );
+    else                str2= ordenamientoSeleccion( str, tam, descendente );
+    
+    cout << "\nCadena original: "<< str;
+	cout << "\nCadena Ordenada: "<< str2;
+    return 0;
+} 
+ 
+string ordenamientoSeleccion( string str, const int tam,bool (*compara)( char, char ) ){
+    int indi; 
+	for ( int i = 0; i < tam - 1; i++ ){
+        indi = i; 
+        for ( int indi2 = i + 1; indi2 < tam; indi2++ ){
+            if ( !(*compara)( str[ indi ], str[ indi2 ] ) ){
+                indi = indi2;
+                SWAP( &str[ indi ], &str[ i ] );
+            }
+		}
+    }
+    return str;
+ } 
+
+void SWAP( char * const elemento1Ptr, char * const elemento2Ptr ){
+    char contenido = *elemento1Ptr;
+    *elemento1Ptr = *elemento2Ptr;
+    *elemento2Ptr = contenido;
+} 
+
+// a<b ascendente
+bool ascendente( char a, char b ){
+    return a < b; 
+} 
+// a>b descendente
+bool descendente( char a, char b ){
+    return a > b; 
+ } 
