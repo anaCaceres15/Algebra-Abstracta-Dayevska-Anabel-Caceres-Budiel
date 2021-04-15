@@ -1,0 +1,21 @@
+#include<iostream>
+#include <string>
+
+using namespace std;
+//Dayevska Anabel Caceres Budiel 
+//18.20 Escriba un programa que elimine las secuencias "por" y "POR" de un objeto string.
+
+
+int main(){
+	string p, rem("por"), rem2("POR");
+	cout<<"ingrese una palabra: ";getline(cin,p);
+
+	if(p.find(rem)!=-1)     p.erase(p.find(rem),rem.size());
+	if(p.rfind(rem)!=-1)	p.erase(p.rfind(rem),rem.size());	
+	if(p.find(rem2)!=-1)    p.erase(p.find(rem2),rem.size());
+	if(p.rfind(rem2)!=-1)	p.erase(p.rfind(rem2),rem.size());	
+
+
+	cout<<"palabra: "<<p;
+	
+}
