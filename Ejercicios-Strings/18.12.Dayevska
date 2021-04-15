@@ -1,0 +1,72 @@
+#include<iostream>
+#include <string>
+#include <stdlib.h>
+#include <time.h>
+
+using namespace std;
+//Dayevska Anabel Caceres Budiel 
+
+/*
+18.12 debe elegir una palabra  y mostrar "Adivine la palabra: XXXXXX"
+El usuario trata de adivinar las letras en la palabra. Deber� mostrarse (si o no) despu�s de cada intento de adivinar.
+Despu�s de cada intento incorrecto, muestre el diagrama con otra parte del cuerpo incluida. Despu�s de siete intentos incorrectos,
+el usuario deber� colgarse.La pantalla debe tener la siguiente apariencia:
+Despu�s de cada intento de adivinar, muestre todos los intentos que hizo el usuario. Si el usuario adivina la palabra correctamente
+ el programa debe mostrar lo siguiente:
+ Felicidades!!! Adivino mi palabra. Desea jugar otra vez? si/no
+*/
+
+
+void GANAR(string adivina, string palabra, int count );
+void salida_pantalla(bool rpta,int &count , int &countB);
+void Adivinar(string &adivina, string palabra,bool &rpta);
+
+string body[7]={"   O","  /","|","\\","   |","  /"," \\"},body1[7]={"    ","   "," "," ","    ","   ","  "}, seguir("si");//seguir=(si/no)	
+
+int main(){
+	srand((unsigned)time(NULL));
+	int n=rand()%30+0, count =0,countB=6;//count= cuantos intentos llevamos, countB= que parte del cuerpo cambiamos
+	string lis[30]={"iguana", "agosto", "pintar", "anillo", "arruga","octavo", "caviar", "chisme", "cuarzo", "ocultar","postre", "ingles", "juzgar", "ataque", "forzar","fingir", "sirena", "vulgar", "servir", "crisis","solido", "mandar", "pincel", "sabana", "viajar", "vencer", "sabila", "amiga", "acuario", "piscina"};
+	string palabra= lis[n], adivina;
+	bool rpta= 0;//si adivina correctamente 1 si no 0 
+	
+	for( int i=0; i<palabra.size(); i++) adivina+="X";
+	cout<<"Adivine la siguiente palabra: "<<adivina<<endl    <<" no mostrar: "<<palabra<<endl;
+	
+	while (seguir=="si"){
+	    Adivinar(adivina,palabra,rpta);
+		cout<<"Adivina: "<<adivina<<endl;
+		salida_pantalla(rpta,count,countB);
+	    GANAR(adivina,palabra,count);
+	    rpta=0;
+	    if (seguir=="si") continue;
+	    else break;
+	}
+}
+
+void Adivinar(string &adivina, string palabra,bool &rpta ){
+	string elige;
+	cout<< "ingrese una letra: ";getline(cin,elige);
+	int pos= palabra.find(elige);
+	while( pos!= string::npos) {//rpta=1 si hubo acierto con la letra
+		rpta=1;
+		adivina.replace(pos,1,elige);
+		pos= palabra.find(elige, pos+1);
+	}
+}
+void salida_pantalla(bool rpta,int &count , int &countB){
+	if(rpta==1) cout<< "Muy bien esta letra si se encuentra, siga intentando"<<endl;
+	else {
+	    cout << "Lo sentimos esa letra no se encuentra, pruebe nuevamente"<< endl;
+	    body[countB]=body1[countB];
+		countB--;
+	}
+	count++;
+	cout << "Intento: "<<count<<endl;
+	cout << body[0] <<endl<< body[1]<<body[2]<<body[2] <<endl<< body[4] <<endl<< body[5]<<body[6] <<endl;
+}
+void GANAR(string adivina, string palabra, int count ){
+	int aux= adivina.compare(palabra);
+	if (aux==0)  cout <<"Felicidades!!! Adivino mi palabra"<<endl<<"Desea jugar otra vez? si/no"; cin>>seguir;
+	if (count ==7 and aux!=0) cout <<"Lo siento :( no adivino mi palabra"<<endl<<"Desea jugar otra vez? si/no"; cin>>seguir;
+}
