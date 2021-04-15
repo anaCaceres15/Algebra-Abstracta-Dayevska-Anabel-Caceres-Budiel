@@ -1,0 +1,52 @@
+#include<iostream>
+#include <string>
+
+using namespace std;
+//Dayevska Anabel Caceres Budiel 
+/*
+18.7 (Cifrado simpler con clave sim�trica) �rot13�, 
+ c)  si no conociera la clave para el inciso (b), 
+ 
+ �que tan dificil cree usted que seria quebrantar el codigo? 
+ Seria algo tardado pero al final si se podria encontrar la clave ya que solo es restar un mismo numero a todas las letras, una vez que se encuentre un secucia
+ que concuerde con una palabra se podria seguir intentado, al final si se lograria decifrar
+ 
+�Que pasaria si tuviera acceso a un poder de computo considerable ( por ejemplo, supercomputadoras)? 
+si tuviera acceso a una supercomputadoras, la forma de cifrarlo la haria mas compleya ya que considero que este cifrado es muy facil de decifrar y que
+en realidad no proteje tanto el mensaje. 
+*/
+
+int main() {
+	string abc("abcdefghijklmnopqrstuvwxyz"), msj;//tam26
+	cout<<"ingrese mensaje: ";
+	getline (cin,msj);
+	
+	//cifrado
+	string mcifrado;
+	int indi;
+	for (int i=0; i<msj.size();i++){
+		if (msj[i]==' '){mcifrado+=' ';	}
+		else{
+			indi= (abc.find(msj[i]))+13;
+		    if (indi>=abc.size()){	
+			   indi-=abc.size();
+			}
+		    mcifrado+=abc[indi];
+		}
+	}
+	
+	//decifrado
+	string mdeci;
+	int indi2;
+	for (int i=0; i<mcifrado.size();i++){
+		if (mcifrado[i]==' '){mdeci+=' ';	}
+		else{
+		    indi2= (abc.find(mcifrado[i]))-13;
+		    if (indi2<0){   indi2+=abc.size();   }
+		    mdeci+=abc[indi2];
+	    }
+	}
+	
+	cout<<"mensaje cifrado: "<<mcifrado<<endl;
+	cout<<"mensaje decifrado: "<<mdeci<<endl;
+}
