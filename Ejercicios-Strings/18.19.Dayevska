@@ -1,0 +1,21 @@
+#include<iostream>
+#include <string>
+
+using namespace std;
+//Dayevska Anabel Caceres Budiel 
+
+//18.19 Escriba un programa que inserte los caracteres "******" en la mitad exacta de un objeto string.
+
+int main(){
+	string c("******"),objeto;
+	int m;
+	cout<<"ingres una palabra: ";getline(cin,objeto);
+	if (objeto.size()%2==0){
+		m= objeto.size()/2;
+	}
+	else{
+		m=(objeto.size()+1)/2;
+	}
+	objeto.insert(m,c);
+	cout<<"nuevo objeto: "<<objeto;
+}
