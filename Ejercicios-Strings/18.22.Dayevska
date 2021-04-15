@@ -1,0 +1,18 @@
+#include<iostream>
+#include <string>
+
+using namespace std;
+//18.22 Escriba un programa que introduzca una l�nea de texto y la imprima al rev�s. Use iteradores en su soluci�n.
+int main(){
+	string texto; 
+	cout<<"Ingres texto: ";getline(cin,texto);
+	string::const_iterator ite=texto.end();
+	while(ite!=texto.begin()){
+		cout << *ite;
+		ite--;
+	}
+	ite=texto.begin();
+	cout <<*ite<<endl;
+	cout<< "texto: "<<texto;
+}
+
