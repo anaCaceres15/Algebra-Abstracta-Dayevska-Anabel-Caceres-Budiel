@@ -1,0 +1,20 @@
+#include<iostream>
+#include <string>
+#include <sstream>
+
+using namespace std;
+//Dayevska Anabel Caceres Budiel 
+int main(){
+	
+	ostringstream salida;
+	
+	int num;
+	cout<<"ingrese numero: "; cin >> num;
+
+	salida << num;
+	
+	cout <<"variabel string "<< salida.str()<<endl;
+
+	
+    return 0;
+}
