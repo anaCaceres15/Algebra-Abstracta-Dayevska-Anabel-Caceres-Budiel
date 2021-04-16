@@ -1,0 +1,19 @@
+#include<iostream>
+#include <string>
+#include <sstream>
+
+using namespace std;
+//Dayevska Anabel Caceres Budiel 
+int main(){
+	string str;
+	
+	cout<<"ingrese numeros: "; cin >> str;
+	istringstream entrada(str);
+	int num;
+	entrada >> num;
+	
+	cout <<"variabel int "<< num<<endl;
+	cout << num<<" + "<<5<<" = "<< num+5<<endl;
+	
+    return 0;
+}
