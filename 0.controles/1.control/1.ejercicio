@@ -1,0 +1,38 @@
+#include<iostream>
+#include <string>
+
+using namespace std;
+//Dayevska Anabel Caceres Budiel 
+int main(){
+	string msj, d;
+	int key;	
+	
+	cout<<"ingrese mensaje: "; getline (cin,msj);
+	cout <<"Ingrese un numero: "; cin >> key;
+	
+	
+	int j=0, tam= msj.size(); //j sera el indice 
+	string aux;// veriica si el ultimo bloque esta incompleto
+	char *ptr= new char [tam+1]; 
+	while(j<msj.size()){
+		aux = msj.substr(j,key);
+		if ( aux.size() < key ) {
+			for (int i=0; i< key; i++) aux+='X';
+		}
+		cout << aux <<endl;
+		d+=aux; d+='*';
+		j=j+key;
+		
+		//vector de string 
+		aux.copy(ptr,tam,0);
+	}
+	
+	ptr[tam]='\0';
+		
+	cout <<"bloques separados por *: "<<d<<endl;
+	cout <<"bloques guardados en un vector string: "<<msj.data()<<endl;
+	
+	delete []ptr;
+	
+	return 0;
+}
