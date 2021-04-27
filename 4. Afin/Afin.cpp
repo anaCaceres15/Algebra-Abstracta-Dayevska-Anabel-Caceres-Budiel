@@ -28,7 +28,6 @@ int inversa_a(int A){
     if (x<0  or   x>=abc.size()){ x=modulo(x,abc.size(),q);	}
     return x;
 }
-
 class emisor{
 	private:
 		int key_a,key_b;
@@ -45,7 +44,9 @@ class emisor{
 	    	int indi, index,q;
 	    	for (int i=0; i<msj.size(); i++){
 	    		index= abc.find(msj[i]);
-			    indi=  key_a*index+key_b ;
+			    indi=  key_a*index;
+			    if (indi<0 or indi>=abc.size() ) indi= modulo(indi, abc.size(),q);
+			    indi= indi +key_b ;
 			    if (indi<0   or   indi>=abc.size()) indi= modulo(indi, abc.size(),q);
 			    me+=abc[indi];
 		    }
@@ -68,13 +69,16 @@ class receptor{
 	    	int indi, index,q;
 	    	for (int i=0; i<m_encriptado.size(); i++){
 	    		index= abc.find(m_encriptado[i]);
-			    indi=  key_a * (index-key_b) ;
+			    indi=  (index-key_b) ;
+			    if (indi<0   or   indi>=abc.size()) indi= modulo(indi, abc.size(),q);
+			    indi = indi *key_a ;
 			    if (indi<0   or   indi>=abc.size()) indi= modulo(indi, abc.size(),q);
 			    m_des+=abc[indi];
 		    }
 		    return m_des;
 	    }
 };
+
 
 
 
